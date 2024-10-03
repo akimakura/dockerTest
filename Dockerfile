@@ -1,15 +1,17 @@
-FROM python:latest
+FROM python:3.8
 
-WORKDIR /src
+RUN mkdir /fastapi_app
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+WORKDIR /fastapi_app
 
-COPY requirements.txt requirements.txt
+COPY requirements.txt .
 
-RUN pip install --no-cache-dir --upgrade -r requirements.txt
+RUN pip install -r requirements.txt
 
-COPY ./app app
+COPY . .
 
-# Указываем команду для запуска FastAPI с использованием uvicorn
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+RUN chmod a+x docker/*.sh
+
+#WORKDIR src #папка с main
+
+#CMD gunicorn app.main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind=0.0.0.0:8000

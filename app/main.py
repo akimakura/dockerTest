@@ -5,17 +5,17 @@ from pydantic import BaseModel, Field
 
 from fastapi import FastAPI, Request, status
 from fastapi.encoders import jsonable_encoder
-from fastapi.exceptions import ValidationError
+from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
+
 app = FastAPI(
-    title="Trading App"
+    title="Speed Reading"
 )
 
-
 # Благодаря этой функции клиент видит ошибки, происходящие на сервере, вместо "Internal server error"
-@app.exception_handler(ValidationError)
-async def validation_exception_handler(request: Request, exc: ValidationError):
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
     return JSONResponse(
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
         content=jsonable_encoder({"detail": exc.errors()}),

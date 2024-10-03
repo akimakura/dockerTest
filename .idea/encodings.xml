@@ -3,5 +3,6 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/.venv/Lib/site-packages/sqlalchemy/engine/base.py" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/models/models.py" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/app/models/models.py" charset="ISO-8859-1" />
   </component>
 </project>
